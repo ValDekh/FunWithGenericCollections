@@ -6,34 +6,31 @@ namespace FunWithGenericCollections
 {
     class Program
     {
-        static void UseGenericList()
+        private static void UseDictionaryM()
         {
-            List<Person> people = new List<Person>()
-                {
-                    new Person {FirstName = "Lala", LastName = "Ivanchuk", Age = 68 },
-                    new Person {FirstName = "Nikolai", LastName = "Ivanchuk", Age = 70 },
-                    new Person {FirstName = "Olgha", LastName = "Borisova", Age = 33},
-                    new Person {FirstName = "Boris", LastName = "Borisov", Age = 36}
-                };
-            Console.WriteLine($"Items in the list {people.Count}");
+            Dictionary<string, Person> peopleA = new Dictionary<string, Person>();
+            peopleA.Add("Homer", new Person { FirstName = "Homer", LastName = "Simpson", Age = 47 });
+            peopleA.Add("Marge", new Person("Marge", "Simpson", 45));
+            peopleA.Add("Lisa", new Person("Lisa", "Simpson", 12));
 
-            foreach (Person p in people)
+            Person homer = peopleA["Homer"];
+            Console.WriteLine(homer);
+            Dictionary<string, Person> peopleB = new Dictionary<string, Person>()
             {
-                Console.WriteLine(p);
-            }
+                {"Homer", new Person ("Homer", "Simpson", 47)},
+                {"Marge",new Person("Marge", "Simpson", 45)},
+                {"Lisa",  new Person("Lisa", "Simpson", 12)}
+            };
 
-            people.Insert(3, new Person { FirstName = "Jerar", LastName = "Viljan", Age = 35 });
-            Console.WriteLine($"Itens in the list {people.Count}");
-            Person[] arrayOfPeople = people.ToArray();
-            foreach (Person p in arrayOfPeople)
-            {
-                Console.WriteLine($"{p.FirstName} is their First Name");
-            }
+            Person lisa = peopleB["Lisa"];
+            Console.WriteLine(lisa);
         }
-
         static void Main(string[] args)
         {
-            UseGenericList();
+            //  UseGenericList();
+            // UseGenericStack();
+           // UseSortedSet.UseSortedSedM();
+            UseDictionaryM();
         }
     }
 }
